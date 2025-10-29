@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Girls Collection</title>
   <style>
-    /* --- Basic Reset --- */
+    /* --- Reset --- */
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
@@ -15,20 +15,34 @@
       overflow-x: hidden;
     }
 
-    /* --- Navigation --- */
+    /* --- Navigation Bar --- */
     nav {
       width: 100%;
       background-color: white;
       display: flex;
-      justify-content: center;
-      gap: 40px;
-      padding: 20px 0;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
       border-bottom: 1px solid #eee;
       position: sticky;
       top: 0;
       z-index: 100;
     }
-    nav a {
+
+    .logo {
+      font-weight: bold;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-size: 16px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 40px;
+      transition: all 0.3s ease;
+    }
+
+    .nav-links a {
       text-decoration: none;
       color: #111;
       font-size: 14px;
@@ -36,8 +50,18 @@
       text-transform: uppercase;
       transition: 0.3s;
     }
-    nav a:hover {
-      color: gray;
+
+    .nav-links a:hover { color: gray; }
+
+    .menu-icon {
+      display: none;
+      font-size: 24px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .menu-icon.active {
+      transform: rotate(90deg);
     }
 
     /* --- Hero Section --- */
@@ -91,35 +115,105 @@
       color: #666;
       border-top: 1px solid #eee;
     }
+
+    /* --- Responsive Design --- */
+    @media (max-width: 768px) {
+      .menu-icon {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 65px;
+        left: 0;
+        width: 100%;
+        background-color: white;
+        border-top: 1px solid #eee;
+        padding: 20px 0;
+        gap: 20px;
+        text-align: center;
+        opacity: 0;
+        transform: translateY(-20px);
+        transition: all 0.3s ease;
+      }
+
+      .nav-links.show {
+        display: flex;
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .nav-links a {
+        font-size: 16px;
+      }
+
+      .hero {
+        height: 70vh;
+      }
+
+      .hero-text {
+        font-size: 2.2em;
+        line-height: 1.2em;
+        padding: 0 20px;
+      }
+
+      .tagline {
+        font-size: 12px;
+        padding: 25px 10px;
+      }
+    }
   </style>
 </head>
 <body>
 
+  <!-- Navigation -->
   <nav>
-    <a href="index.html">Home</a>
-    <a href="catalog.html">Catalog</a>
-    <a href="about.html">About</a>
-    <a href="contact.html">Contact</a>
+    <div class="logo">Girls Collection</div>
+
+    <div class="menu-icon" id="menuIcon" onclick="toggleMenu()">☰</div>
+
+    <div class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="catalog.html">Catalog</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
   </nav>
 
+  <!-- Hero Section -->
   <section class="hero">
-    <!-- 🔹 Replace "fashion.mp4" with your actual video file -->
+    <!-- Replace fashion.mp4 with your actual video file -->
     <video autoplay muted loop playsinline>
       <source src="fashion.mp4" type="video/mp4">
-      <!-- fallback -->
       Your browser does not support the video tag.
     </video>
 
-    <div class="hero-text">Girl’s<br>Collection</div>
+    <div class="hero-text">
+      Girl’s<br>Collection
+    </div>
   </section>
 
+  <!-- Tagline -->
   <div class="tagline">
     WE DELIVER THE BEST FOR YOU
   </div>
 
+  <!-- Footer -->
   <footer>
     &copy; 2025 Girls Collection — All Rights Reserved.
   </footer>
+
+  <!-- Menu Toggle Script -->
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById("navLinks");
+      const icon = document.getElementById("menuIcon");
+      menu.classList.toggle("show");
+      icon.classList.toggle("active");
+    }
+  </script>
 
 </body>
 </html>
