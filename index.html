@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Girls Collection</title>
+  <style>
+    /* --- Basic Reset --- */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      background-color: white;
+      color: #111;
+      overflow-x: hidden;
+    }
+
+    /* --- Navigation --- */
+    nav {
+      width: 100%;
+      background-color: white;
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      padding: 20px 0;
+      border-bottom: 1px solid #eee;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    nav a {
+      text-decoration: none;
+      color: #111;
+      font-size: 14px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: 0.3s;
+    }
+    nav a:hover {
+      color: gray;
+    }
+
+    /* --- Hero Section --- */
+    .hero {
+      position: relative;
+      width: 100%;
+      height: 90vh;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero video {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      min-width: 100%;
+      min-height: 100%;
+      width: auto;
+      height: auto;
+      z-index: -1;
+      transform: translate(-50%, -50%);
+      object-fit: cover;
+      filter: brightness(75%);
+    }
+
+    .hero-text {
+      color: white;
+      font-size: 4em;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-align: center;
+      text-transform: uppercase;
+      text-shadow: 0 0 25px rgba(0,0,0,0.6);
+    }
+
+    /* --- Tagline --- */
+    .tagline {
+      text-align: center;
+      padding: 40px 0;
+      letter-spacing: 2px;
+      font-size: 14px;
+    }
+
+    /* --- Footer --- */
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 12px;
+      color: #666;
+      border-top: 1px solid #eee;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="catalog.html">Catalog</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <section class="hero">
+    <!-- 🔹 Replace "fashion.mp4" with your actual video file -->
+    <video autoplay muted loop playsinline>
+      <source src="fashion.mp4" type="video/mp4">
+      <!-- fallback -->
+      Your browser does not support the video tag.
+    </video>
+
+    <div class="hero-text">Girl’s<br>Collection</div>
+  </section>
+
+  <div class="tagline">
+    WE DELIVER THE BEST FOR YOU
+  </div>
+
+  <footer>
+    &copy; 2025 Girls Collection — All Rights Reserved.
+  </footer>
+
+</body>
+</html>

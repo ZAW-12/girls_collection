@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catalog | Girls Collection</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      background-color: white;
+      color: #111;
+      line-height: 1.8;
+    }
+
+    /* Navigation */
+    nav {
+      width: 100%;
+      background-color: white;
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      padding: 20px 0;
+      border-bottom: 1px solid #eee;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    nav a {
+      text-decoration: none;
+      color: #111;
+      font-size: 14px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: 0.3s;
+    }
+    nav a:hover { color: gray; }
+
+    /* Header */
+    .header {
+      text-align: center;
+      padding: 60px 20px 20px;
+    }
+    .header h1 {
+      font-size: 2.5em;
+      letter-spacing: 3px;
+      margin-bottom: 10px;
+    }
+    .header p {
+      color: #555;
+      font-size: 1.1em;
+    }
+
+    /* Filter Buttons */
+    .filters {
+      text-align: center;
+      margin: 40px 0;
+    }
+    .filters button {
+      background: none;
+      border: 1px solid #ddd;
+      color: #111;
+      padding: 10px 25px;
+      margin: 0 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .filters button:hover,
+    .filters button.active {
+      background-color: #111;
+      color: white;
+    }
+
+    /* Catalog Grid */
+    .catalog {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 30px;
+      padding: 0 40px 80px;
+      justify-items: center;
+    }
+
+    .product {
+      text-align: center;
+      border: 1px solid #eee;
+      padding: 20px;
+      transition: 0.3s;
+      border-radius: 8px;
+      background-color: #fff;
+    }
+    .product:hover {
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transform: translateY(-4px);
+    }
+    .product img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 6px;
+      margin-bottom: 15px;
+      transition: 0.3s;
+    }
+    .product p {
+      font-size: 1em;
+      color: #333;
+      letter-spacing: 1px;
+    }
+
+    /* Color Dots */
+    .colors { margin-top: 10px; }
+    .colors span {
+      display: inline-block;
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      border: 1px solid #ccc;
+      margin: 0 4px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .colors span:hover { transform: scale(1.2); }
+    .colors span.active { border: 2px solid #111; }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 12px;
+      color: #666;
+      border-top: 1px solid #eee;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="catalog.html">Catalog</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <!-- Header -->
+  <div class="header">
+    <h1>Our Products</h1>
+    <p>Explore our exclusive lines: Apparel, Shoes, Queen Accessories, and the Signature Collection.</p>
+  </div>
+
+  <!-- Filter Buttons -->
+  <div class="filters">
+    <button class="active" onclick="filterProducts('all')">All</button>
+    <button onclick="filterProducts('apparel')">Apparel</button>
+    <button onclick="filterProducts('shoes')">Shoes</button>
+    <button onclick="filterProducts('queen')">Queen Accessories</button>
+    <button onclick="filterProducts('signature')">Signature</button>
+  </div>
+
+  <!-- Catalog -->
+  <div class="catalog">
+
+    <!-- Apparel -->
+    <div class="product" data-category="apparel">
+      <img src="apparel1.jpg" alt="Floral Dress">
+      <p>Soft Floral Dress</p>
+    </div>
+
+    <div class="product" data-category="apparel">
+      <img src="apparel2.jpg" alt="Classic Blazer">
+      <p>Classic Beige Blazer</p>
+    </div>
+
+    <!-- Shoes -->
+    <div class="product" data-category="shoes">
+      <img src="MAONINGLVblack.jpg" alt="Signature Crystal Buckle Heels">
+      <p>MAONINGLV</p>
+
+      <!-- Color Options -->
+      <div class="colors">
+        <span style="background-color:black"
+              onclick="changeColor(this,'MAONINGLVblack.jpg')"
+              title="Black"></span>
+
+        <span style="background-color:white"
+              onclick="changeColor(this,'MAONINGLVwhite.jpg')"
+              title="White"></span>
+
+        <span style="background-color:beige"
+              onclick="changeColor(this,'MAONINGLVbrown.jpg')"
+              title="Beige"></span>
+      </div>
+
+      <p style="font-size:0.9em;color:#666;margin-top:8px;">
+        Available in Black, White, Beige
+      </p>
+    </div>
+
+    <!-- Queen Accessories -->
+    <div class="product" data-category="queen">
+      <img src="bag1.jpg" alt="Leather Handbag">
+      <p>Queen Series Handbag</p>
+    </div>
+
+    <div class="product" data-category="queen">
+      <img src="necklace.jpg" alt="Gold Necklace">
+      <p>Queen Signature Necklace</p>
+    </div>
+
+    <!-- Signature -->
+    <div class="product" data-category="signature">
+      <img src="sig1.jpg" alt="Signature Dress">
+      <p>Signature Elegant Dress</p>
+    </div>
+
+    <div class="product" data-category="signature">
+      <img src="sig2.jpg" alt="Signature Bag">
+      <p>Signature Limited Bag</p>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    &copy; 2025 Girls Collection — All Rights Reserved.
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    function filterProducts(category) {
+      const items = document.querySelectorAll('.product');
+      const buttons = document.querySelectorAll('.filters button');
+
+      buttons.forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+
+      items.forEach(item => {
+        if (category === 'all' || item.dataset.category === category) {
+          item.style.display = 'block';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    }
+
+    // 🖤 Color Switch
+    function changeColor(element, image) {
+      const product = element.closest('.product');
+      const img = product.querySelector('img');
+      img.src = image;
+
+      // highlight selected color
+      const dots = product.querySelectorAll('.colors span');
+      dots.forEach(dot => dot.classList.remove('active'));
+      element.classList.add('active');
+    }
+  </script>
+
+</body>
+</html>
