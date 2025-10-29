@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catalog | Girls Collection</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      background-color: white;
+      color: #111;
+      line-height: 1.8;
+    }
+
+    /* --- Navbar --- */
+    nav {
+      width: 100%;
+      background-color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+      border-bottom: 1px solid #eee;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .logo {
+      font-weight: bold;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-size: 16px;
+    }
+    .nav-links {
+      display: flex;
+      gap: 40px;
+      transition: all 0.3s ease;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: #111;
+      font-size: 14px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: 0.3s;
+    }
+    .nav-links a:hover { color: gray; }
+    .menu-icon { display: none; font-size: 24px; cursor: pointer; transition: transform 0.3s ease; }
+    .menu-icon.active { transform: rotate(90deg); }
+
+    /* --- Header --- */
+    .header {
+      text-align: center;
+      padding: 60px 20px 20px;
+    }
+    .header h1 { font-size: 2.5em; letter-spacing: 3px; margin-bottom: 10px; }
+    .header p { color: #555; font-size: 1.1em; }
+
+    /* --- Filter Buttons --- */
+    .filters { text-align: center; margin: 40px 0; }
+    .filters button {
+      background: none; border: 1px solid #ddd; color: #111;
+      padding: 10px 25px; margin: 5px 10px; text-transform: uppercase;
+      letter-spacing: 1px; cursor: pointer; transition: 0.3s;
+    }
+    .filters button:hover, .filters button.active {
+      background-color: #111; color: white;
+    }
+
+    /* --- Catalog Grid --- */
+    .catalog {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 25px;
+      padding: 0 30px 60px;
+      justify-items: center;
+    }
+
+    .product {
+      text-align: center;
+      border: 1px solid #eee;
+      border-radius: 8px;
+      padding: 15px;
+      background-color: white;
+      transition: 0.3s;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 1s ease forwards;
+    }
+    .product:hover {
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transform: translateY(-4px);
+    }
+
+    .product img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 6px;
+      margin-bottom: 10px;
+      transition: 0.3s;
+    }
+    .product p { font-size: 1em; color: #333; letter-spacing: 1px; }
+
+    /* --- Color buttons --- */
+    .colors {
+      display: flex;
+      justify-content: center;
+      margin-top: 10px;
+      gap: 10px;
+    }
+    .colors span {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 1px solid #ccc;
+      cursor: pointer;
+      transition: transform 0.2s, border 0.2s;
+    }
+    .colors span:hover { transform: scale(1.2); }
+    .colors span.active { border: 2px solid black; }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 12px;
+      color: #666;
+      border-top: 1px solid #eee;
+    }
+
+    /* --- Animation --- */
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* --- Mobile --- */
+    @media (max-width: 768px) {
+      .menu-icon { display: block; }
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 65px;
+        left: 0;
+        width: 100%;
+        background-color: white;
+        border-top: 1px solid #eee;
+        padding: 20px 0;
+        gap: 20px;
+        text-align: center;
+        opacity: 0;
+        transform: translateY(-20px);
+        transition: all 0.3s ease;
+      }
+      .nav-links.show { display: flex; opacity: 1; transform: translateY(0); }
+      .product img { height: 200px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav>
+    <div class="logo">Girls Collection</div>
+    <div class="menu-icon" id="menuIcon" onclick="toggleMenu()">☰</div>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="catalog.html">Catalog</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <div class="header">
+    <h1>Catalog For Our Products</h1>
+    <p>Explore our exclusive lines: Apparel, Shoes, Queen Accessories, and the Signature Collection.</p>
+  </div>
+
+  <!-- Filters -->
+  <div class="filters">
+    <button class="active" onclick="filterProducts('all')">All</button>
+    <button onclick="filterProducts('apparel')">Apparel</button>
+    <button onclick="filterProducts('shoes')">Shoes</button>
+    <button onclick="filterProducts('queen')">Queen Accessories</button>
+    <button onclick="filterProducts('signature')">Signature</button>
+  </div>
+
+  <!-- Catalog -->
+  <div class="catalog" id="catalog"></div>
+
+  <!-- Footer -->
+  <footer>&copy; 2025 Girls Collection — All Rights Reserved.</footer>
+
+  <!-- Load product data -->
+  <script src="products.js"></script>
+
+  <script>
+    // Menu toggle
+    function toggleMenu() {
+      const menu = document.getElementById("navLinks");
+      const icon = document.getElementById("menuIcon");
+      menu.classList.toggle("show");
+      icon.classList.toggle("active");
+    }
+
+    // Category filter
+    function filterProducts(category) {
+      const items = document.querySelectorAll('.product');
+      const buttons = document.querySelectorAll('.filters button');
+      buttons.forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+      items.forEach(item => {
+        if (category === 'all' || item.dataset.category === category) {
+          item.style.display = 'block';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    }
+
+    // Load all products dynamically
+    function loadCatalog() {
+      const catalog = document.getElementById("catalog");
+      catalog.innerHTML = "";
+
+      products.forEach(p => {
+        const item = document.createElement("div");
+        item.classList.add("product");
+        item.setAttribute("data-category", p.category);
+
+        // Create color buttons
+        let colorButtons = "";
+        if (p.colors) {
+          colorButtons = `<div class="colors">` +
+            p.colors.map(c =>
+              `<span title="${c.name}" style="background-color:${c.code}"
+                    onclick="changeProductImage(this, '${c.image}')"></span>`
+            ).join("") +
+          `</div>`;
+        }
+
+        item.innerHTML = `
+          <img src="${p.image}" alt="${p.name}">
+          <p>${p.name}</p>
+          <p style="font-size:0.9em;color:#666;margin-top:5px;">${p.details}</p>
+          ${colorButtons}
+        `;
+        catalog.appendChild(item);
+      });
+    }
+
+    // Change image when color is clicked
+    function changeProductImage(element, imgSrc) {
+      const product = element.closest(".product");
+      const img = product.querySelector("img");
+      img.src = imgSrc;
+
+      // Highlight active color
+      const all = product.querySelectorAll(".colors span");
+      all.forEach(s => s.classList.remove("active"));
+      element.classList.add("active");
+    }
+
+    // Run on load
+    loadCatalog();
+  </script>
+</body>
+</html>
